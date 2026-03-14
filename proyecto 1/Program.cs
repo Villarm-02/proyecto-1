@@ -1,7 +1,7 @@
 ﻿int opciones = 0;
 void Menu()
 {
-    Console.WriteLine("===Menú===");
+    Console.WriteLine("\n===Menú===");
     Console.WriteLine("1.Evaluar nuevo contenido");
     Console.WriteLine("2.Mostrar reglas del sistema");
     Console.WriteLine("3.Mostrar estadísticas de la sesión");
