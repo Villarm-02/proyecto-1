@@ -8,6 +8,22 @@ void Menu()
     Console.WriteLine("4.Reiniciar estadísticas");
     Console.WriteLine("5.Salir");
 }
+void EvaluarContenido()
+{
+    string clasificacion, tipocontenido,nivelproduccion;
+    int horas, minutos;
+    Console.Write("Ingrese el tipo de contenido: ");
+    tipocontenido = Console.ReadLine().ToLower();
+    Console.Write("ingrese los minutos de duración: ");
+    bool vali = int.TryParse(Console.ReadLine(), out minutos);
+    Console.Write("Ingrese la clasificación: ");
+    clasificacion = Console.ReadLine().ToLower();
+    Console.Write("ingrese la hora programada: ");
+    bool vali2 = int.TryParse(Console.ReadLine(), out horas);
+    Console.Write("Ingrese el nivel de producción: ");
+    nivelproduccion = Console.ReadLine().ToLower();
+
+}
 do
 {
     Menu();
