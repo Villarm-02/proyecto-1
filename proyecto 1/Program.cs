@@ -237,6 +237,9 @@ void ReiniciarEstadisticas()
     totalRevision = 0;
     impactoPredominante = "";
     porcentaje = 0;
+    totalimpactoalto = 0;
+    totalimpactomedio = 0;
+    totalimpactobajo = 0;
 }
 
 void ReglasdelSistema()
@@ -282,23 +285,33 @@ do
 
             case 1:
                 EvaluarContenido();
+                Console.ReadKey();
                 break;
                     case 2:
                 ReglasdelSistema();
+                Console.ReadKey();
                 break; 
                  case 3:
                 MostrarEstadisticas();
+                Console.ReadKey();
                 break;
                 case 4:
                 ReiniciarEstadisticas();
+                Console.ReadKey();
                 break;
                     case 5:
                 Console.Clear();
                 Console.WriteLine("Saliendo del sistema...");
+                Console.ReadKey();
                 break;
             default:
                 Console.WriteLine("Datos fuera del rango de opciones");
+                Console.ReadKey();
                 break;
         }
     }
 } while (opciones !=5);
+
+Console.WriteLine("\n===Resumen final===");
+MostrarEstadisticas();
+Console.ReadKey();
