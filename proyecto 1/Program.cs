@@ -199,6 +199,8 @@ void MostrarEstadisticas()
     {
         Console.Write("=");
     } 
+    Console.WriteLine();
+
     if (totalEvaluados > 0)
     {
         porcentaje = (totalPublicados * 100) / totalEvaluados;
@@ -237,10 +239,37 @@ void ReiniciarEstadisticas()
     porcentaje = 0;
 }
 
+void ReglasdelSistema()
+{
+    for (int i = 0; i < 25; i++)
+    {
+        Console.Write("=");
+    } 
+    Console.WriteLine() ;
+
+    Console.WriteLine("Reglas del Sistema.") ;
+    Console.WriteLine("\nReglas de clasificación y horario.\n");
+    Console.WriteLine("1. Todo público: cualquier hora");
+    Console.WriteLine("2. +13: entre 6 y 22 horas");
+    Console.WriteLine("3. +18: entre 22 y 5 horas");
+
+    Console.WriteLine("\nReglas de duración por tipo.\n");
+    Console.WriteLine("1. Película: 60–180 minutos");
+    Console.WriteLine("2. Serie: 20–90 minutos");
+    Console.WriteLine("3.Documental: 30–120 minutos");
+    Console.WriteLine("4. Evento en vivo: 30–240 minutos");
+    Console.WriteLine("Si la duración está fuera del rango permitido, el contenido no cumple la validación técnica. \n");
+
+    Console.WriteLine("\nReglas de producción.\n");
+    Console.WriteLine("1.Producción baja solo válida para Todo público o +13");
+    Console.WriteLine("2. Producción media o alta válida para cualquier clasificación");
+
+}
+
 do
 {
     Menu();
-    Console.Write("Ingrese una opción: ");
+    Console.Write("\nIngrese una opción: ");
     bool vali = int.TryParse(Console.ReadLine(), out opciones);
     if (!vali)
     {
@@ -255,7 +284,7 @@ do
                 EvaluarContenido();
                 break;
                     case 2:
-                Console.WriteLine("En proceso");
+                ReglasdelSistema();
                 break; 
                  case 3:
                 MostrarEstadisticas();
