@@ -68,6 +68,75 @@ void EvaluarContenido()
     }
 
 }
+
+bool ValidacionTec(string clasificacion, string tipocontenido, string nivelproduccion, int horas, int minutos)
+{
+    bool permitido = true;
+    if (clasificacion == "todo publico" )
+    {
+        //todas las horas son pertmitidas!!
+    }
+    else if (clasificacion == "+13")
+    {
+        if (horas < 6 || horas >22)
+        {
+            permitido = false;
+            Console.WriteLine("Las horas permitidas de +13 son: (6-22 horas)");
+        }
+    }
+    else if (clasificacion == "+18")
+    {
+        if (horas < 22 && horas >5)
+        {
+            permitido = false;
+            Console.WriteLine("Las horas permitidas de +18 son: (22-5 horas)");
+        }
+    }
+
+    if (tipocontenido == "pelicula")
+    {
+        if (minutos < 60   || minutos > 180)
+        {
+            permitido = false;
+            Console.WriteLine("Los minutos permitidos para películas son: (60-180 minutos)");
+        }
+    }
+    else if (tipocontenido == "serie")
+    {
+        if (minutos <20 || minutos > 90)
+        {
+            permitido = false;
+            Console.WriteLine("Los minutos permitidos para series son: (20-90 minutos)");
+        }
+    }
+    else if (tipocontenido == "documental")
+    {
+        if (minutos < 30 || minutos > 120)
+        {
+            permitido = false;
+            Console.WriteLine("Los minutos permitidos para documentales son: (30-120 minutos)");
+        }
+    }
+    else if (tipocontenido == "evento en vivo")
+    {
+        if (minutos < 30 || minutos > 240)
+        {
+            permitido = false;
+            Console.WriteLine("Los minutos permitidos para eventos en vivo son: (30-240 minutos)");
+        }
+    }
+    
+    if (nivelproduccion == "bajo")
+    {
+        if (clasificacion == "+18")
+        {
+            permitido = false;
+            Console.WriteLine("Cuando la clasificacíon es baja permitido unicamente para: Todo publico y +13.");
+        }
+    }
+    return permitido;
+}
+
 do
 {
     Menu();
