@@ -1,4 +1,6 @@
 ﻿int opciones = 0, totalEvaluados = 0, totalPublicados = 0, totalRechazados = 0, totalRevision = 0;
+int totalimpactoalto = 0, totalimpactomedio = 0, totalimpactobajo = 0;
+string impactoPredominante = "";
 void Menu()
 {
     Console.WriteLine("\n===Menú===");
@@ -74,14 +76,17 @@ void EvaluarContenido()
         if (mostrarimpacto == "Impacto Bajo")
         {
             decision = "Publicar";
+            totalimpactobajo++;
         }
         else if (mostrarimpacto == "Impacto Medio")
         {
             decision = "Publicar con Ajustes";
+            totalimpactomedio++;
         }
         else if (mostrarimpacto == "Impacto Alto")
         {
             decision = "Enviar a revisión";
+            totalimpactoalto++;
         }
     }
     else
@@ -185,6 +190,41 @@ string ClasificacionImpacto(string nivelproduccion, int minutos, int horas)
         impacto = "Impacto Bajo";
     }
     return impacto;
+}
+
+void MostrarEstadisticas()
+{
+    int porcentaje = 0;
+    for (int i = 0; i < 25; i++)
+    {
+        Console.Write("=");
+    } 
+    if (totalEvaluados > 0)
+    {
+        porcentaje = (totalPublicados * 100) / totalEvaluados;
+    }
+
+    if (totalimpactoalto >= totalimpactomedio && totalimpactoalto >= totalimpactobajo)
+    {
+        impactoPredominante = "Alto";
+    }
+    else if (totalimpactomedio >= totalimpactobajo)
+    {
+        impactoPredominante = "Medio";
+    }
+    else
+    {
+        impactoPredominante = "Bajo";
+    }
+
+    Console.WriteLine();
+    Console.WriteLine("Total de evaluados: " +totalEvaluados );
+    Console.WriteLine("Total de publicados: " + totalPublicados);
+    Console.WriteLine("Total de rechazados: " + totalRechazados);
+    Console.WriteLine("Total en revisión: " + totalRevision);
+    Console.WriteLine("Impacto predominante: " + impactoPredominante);
+    Console.WriteLine("Porcentaje de aprobación: " + porcentaje + "%");
+
 }
 
 do
