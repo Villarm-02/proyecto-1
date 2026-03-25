@@ -1,4 +1,4 @@
-﻿int opciones = 0;
+﻿int opciones = 0, totalEvaluados = 0, totalPublicados = 0, totalRechazados = 0, totalRevision = 0;
 void Menu()
 {
     Console.WriteLine("\n===Menú===");
@@ -66,7 +66,38 @@ void EvaluarContenido()
             Console.WriteLine("Dato ingresado no válido. Opciones: Bajo, Medio o Alto");
         }
     }
+    bool mostrarresultado = ValidacionTec(clasificacion, tipocontenido, nivelproduccion, horas, minutos);
+    string decision = "";
+    if (mostrarresultado == true )
+    {
+        string mostrarimpacto = ClasificacionImpacto(nivelproduccion, minutos, horas);
+        if (mostrarimpacto == "Impacto Bajo")
+        {
+            decision = "Publicar";
+        }
+        else if (mostrarimpacto == "Impacto Medio")
+        {
+            decision = "Publicar con Ajustes";
+        }
+        else if (mostrarimpacto == "Impacto Alto")
+        {
+            decision = "Enviar a revisión";
+        }
+    }
+    else
+    {
+        decision = "Rechazar";
+    }
 
+    Console.WriteLine("Decisión: " + decision);
+    totalEvaluados++;
+
+    if (decision == "Publicar" || decision == "Publicar con Ajustes")
+        totalPublicados++;
+    else if (decision == "Rechazar")
+        totalRechazados++;
+    else if (decision == "Enviar a revisión")
+        totalRevision++;
 }
 
 bool ValidacionTec(string clasificacion, string tipocontenido, string nivelproduccion, int horas, int minutos)
@@ -137,6 +168,25 @@ bool ValidacionTec(string clasificacion, string tipocontenido, string nivelprodu
     return permitido;
 }
 
+string ClasificacionImpacto(string nivelproduccion, int minutos, int horas)
+{
+    string impacto = "";
+    if (nivelproduccion == "alto" || minutos > 120 || (horas >= 20 && horas <= 23))
+    {
+        impacto = "Impacto Alto";
+ 
+    }
+    else if (nivelproduccion == "medio" || (minutos >= 60 && minutos <=120) )
+    {
+        impacto = "Impacto Medio";
+    }
+    else if(nivelproduccion == "bajo" && minutos < 60)
+    {
+        impacto = "Impacto Bajo";
+    }
+    return impacto;
+}
+
 do
 {
     Menu();
@@ -152,7 +202,7 @@ do
         {
 
             case 1:
-                Console.WriteLine("En proceso");
+                EvaluarContenido();
                 break;
                     case 2:
                 Console.WriteLine("En proceso");
