@@ -10,18 +10,62 @@ void Menu()
 }
 void EvaluarContenido()
 {
-    string clasificacion, tipocontenido,nivelproduccion;
-    int horas, minutos;
-    Console.Write("Ingrese el tipo de contenido: ");
-    tipocontenido = Console.ReadLine().ToLower();
-    Console.Write("ingrese los minutos de duración: ");
-    bool vali = int.TryParse(Console.ReadLine(), out minutos);
-    Console.Write("Ingrese la clasificación: ");
-    clasificacion = Console.ReadLine().ToLower();
-    Console.Write("ingrese la hora programada: ");
-    bool vali2 = int.TryParse(Console.ReadLine(), out horas);
-    Console.Write("Ingrese el nivel de producción: ");
-    nivelproduccion = Console.ReadLine().ToLower();
+    string clasificacion = "", tipocontenido = "",nivelproduccion = "";
+    int horas = -1, minutos = 0;
+    bool valihoras = false, valiminutos = false;
+
+    while (tipocontenido != "pelicula" && tipocontenido != "serie" && tipocontenido != "documental"
+        && tipocontenido != "evento en vivo")
+    {
+        Console.Write("Ingrese el tipo de contenido: ");
+        tipocontenido = Console.ReadLine().ToLower();
+        if (tipocontenido != "pelicula" && tipocontenido != "serie" && tipocontenido != "documental"
+        && tipocontenido != "evento en vivo")
+        {
+            Console.WriteLine("Opción no válida, Opciones: pelicula, serie, documental o evento en vivo");
+        }
+    }
+    while (!valiminutos || minutos <= 0)
+    {
+        Console.Write("ingrese los minutos de duración: ");
+        valiminutos = int.TryParse(Console.ReadLine(), out minutos);
+        if (!valiminutos || minutos <= 0)
+        {
+            Console.WriteLine("Ingrese la duracion del contenido en minutos. ejemplo: 30");
+        }
+    }
+
+    while (clasificacion != "todo publico" && clasificacion != "+13" && clasificacion != "+18")
+    {
+        Console.Write("Ingrese la clasificación: ");
+        clasificacion = Console.ReadLine().ToLower();
+
+        if (clasificacion != "todo publico" && clasificacion != "+13" && clasificacion != "+18")
+        {
+            Console.WriteLine("Ingrese la clasificacíon permitida. ejemplo: todo publico, +13 o +18");
+        }
+    }
+    
+    while (!valihoras || horas < 0 || horas >23)
+    {
+        Console.Write("ingrese la hora programada: ");
+        valihoras = int.TryParse(Console.ReadLine(), out horas);
+
+        if (!valihoras || horas < 0 || horas > 23)
+        {
+            Console.WriteLine("Rango de horas no permitidas. Rango: (0-23)");
+        }
+    }
+    
+    while (nivelproduccion != "bajo" && nivelproduccion != "medio" && nivelproduccion != "alto")
+    {
+        Console.Write("Ingrese el nivel de producción: ");
+        nivelproduccion = Console.ReadLine().ToLower();
+        if (nivelproduccion != "bajo" && nivelproduccion != "medio" && nivelproduccion != "alto")
+        {
+            Console.WriteLine("Dato ingresado no válido. Opciones: Bajo, Medio o Alto");
+        }
+    }
 
 }
 do
