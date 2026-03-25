@@ -1,5 +1,5 @@
 ﻿int opciones = 0, totalEvaluados = 0, totalPublicados = 0, totalRechazados = 0, totalRevision = 0;
-int totalimpactoalto = 0, totalimpactomedio = 0, totalimpactobajo = 0;
+int totalimpactoalto = 0, totalimpactomedio = 0, totalimpactobajo = 0, porcentaje = 0 ;
 string impactoPredominante = "";
 void Menu()
 {
@@ -194,7 +194,7 @@ string ClasificacionImpacto(string nivelproduccion, int minutos, int horas)
 
 void MostrarEstadisticas()
 {
-    int porcentaje = 0;
+    
     for (int i = 0; i < 25; i++)
     {
         Console.Write("=");
@@ -227,6 +227,16 @@ void MostrarEstadisticas()
 
 }
 
+void ReiniciarEstadisticas()
+{
+    totalEvaluados = 0;
+    totalPublicados = 0;
+    totalRechazados = 0;
+    totalRevision = 0;
+    impactoPredominante = "";
+    porcentaje = 0;
+}
+
 do
 {
     Menu();
@@ -248,10 +258,10 @@ do
                 Console.WriteLine("En proceso");
                 break; 
                  case 3:
-                Console.WriteLine("En proceso");
+                MostrarEstadisticas();
                 break;
                 case 4:
-                Console.WriteLine("En proceso");
+                ReiniciarEstadisticas();
                 break;
                     case 5:
                 Console.Clear();
